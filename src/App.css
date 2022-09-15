@@ -1,0 +1,55 @@
+Button active{
+  align-items: flex-end;
+
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  font-size: 15px;
+}
+
+th {
+  background-color: rgb(11, 135, 207);
+}
+
+td {
+  background-color: rgb(239, 245, 248);
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form * {
+  font-size: 28px;
+}
+.MuiButtonBase-root:hover {
+  
+  color: rgb(10, 11, 12);
+}
+.MuiList-root{
+  color:rgb(3, 8, 8);
+}
+
+
