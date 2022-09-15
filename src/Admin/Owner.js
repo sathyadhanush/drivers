@@ -18,23 +18,34 @@ const useStyles = makeStyles({
     minWidth: 650
   }
 });
+
+
+
+
 function Owner() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [rows, setRows] = useState([]);
   const classes = useStyles();
   const[datas,setDatas]=useState([]);
-const [page, setPage] = React.useState(1);
+const [page, setPage] = React.useState(10);
 const [totalpage, setTotalpage] = React.useState(1);
 const [rowsPerPage, setRowsPerPage] = React.useState(10);
+const[UUID]=useState();
 const handleChangePage = (event, newPage) => {
+  console.log(newPage,page)
   setPage(newPage);
+  
+  console.log(newPage,page,rowsPerPage)
+  console.log(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  dataload(newPage,UUID,rowsPerPage);
 };
 
 const handleChangeRowsPerPage = event => {
   setRowsPerPage(parseInt(event.target.value,10));
   
 };
+
 const emptyRows =
   rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 console.log(emptyRows,rowsPerPage, rows.length ,page)
@@ -49,13 +60,17 @@ console.log(emptyRows,rowsPerPage, rows.length ,page)
        
       }
 
-
-      fetch(Url+"/v2/owners/"+page+"?size="+rowsPerPage+"&userId&sort=desc",{
+        dataload(page,UUID,rowsPerPage);
+   
+    }, [])
+    function dataload(new_Page,_UUID,_rowsPerPage){
+  
+      fetch(Url+"/v2/owners/"+new_Page+"?size="+_rowsPerPage+"&userId&sort=desc",{
         method:'get',        
         headers:{
           'Accept':'application/json',
           'Content-Type':'application/json',
-           'x-auth': UUID
+           'x-auth': _UUID
         }
       })
         .then(res => res.json())
@@ -75,8 +90,8 @@ console.log(emptyRows,rowsPerPage, rows.length ,page)
             setError(error);
           }
         )
-    }, [])
-  
+      console.log("dataload",new_Page)
+    }
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
