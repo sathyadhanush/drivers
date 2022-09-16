@@ -28,7 +28,7 @@ function Owner() {
   const [rows, setRows] = useState([]);
   const classes = useStyles();
   const[datas,setDatas]=useState([]);
-const [page, setPage] = React.useState(10);
+const [page, setPage] = React.useState(1);
 const [totalpage, setTotalpage] = React.useState(1);
 const [rowsPerPage, setRowsPerPage] = React.useState(10);
 const[UUID]=useState();
@@ -137,7 +137,7 @@ console.log(emptyRows,rowsPerPage, rows.length ,page)
     <TableRow>
       <TablePagination
         count={rows.length}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={rowsPerPage.length}
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
